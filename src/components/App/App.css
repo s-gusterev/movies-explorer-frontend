@@ -9,6 +9,7 @@
 
 .root__container {
   max-width: 1140px;
-  padding: 0 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin: 0 auto;
 }
