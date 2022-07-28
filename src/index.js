@@ -1,0 +1,11 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App/App';
+import './vendor/fonts/fonts.css';
+import './vendor/normalize.css';
+
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);

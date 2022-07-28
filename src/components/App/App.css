@@ -1,0 +1,14 @@
+.root {
+  color: #000;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.root__container {
+  max-width: 1140px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
