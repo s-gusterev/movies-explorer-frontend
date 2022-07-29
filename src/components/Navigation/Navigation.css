@@ -3,7 +3,7 @@
   align-items: center;
 }
 
-.navigation__link {
+.navigation-auth__link {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -11,15 +11,15 @@
   margin-right: 30px;
 }
 
-.navigation__link:last-child {
+.navigation-auth__link:last-child {
   margin-right: 0;
 }
 
-.navigation__link_type_signin {
+.navigation-auth__link_type_signin {
   color: #fff;
 }
 
-.navigation__link_type_signup {
+.navigation-auth__link_type_signup {
   color: #000;
   background-color: #2be080;
   padding: 8px 20px;

@@ -19,14 +19,20 @@ const Navigation = () => {
         </a>
       </nav> */}
       <nav className='navigation-auth'>
-        <a className='navigation__link navigation__link_type_signin' href='/'>
+        <a
+          className='navigation-auth__link navigation-auth__link_type_signin'
+          href='/'
+        >
           Регистрация
         </a>
-        <a className='navigation__link navigation__link_type_signup' href='/'>
+        <a
+          className='navigation-auth__link navigation-auth__link_type_signup'
+          href='/'
+        >
           Войти
         </a>
 
-        {/* <a className='navigation__link-account' href='/'>
+        {/* <a className='navigation-auth__link-account' href='/'>
           Аккаунт
         </a> */}
       </nav>

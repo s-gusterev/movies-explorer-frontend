@@ -29,4 +29,9 @@
   color: #000;
   text-decoration: none;
   border-bottom: 1px solid #000;
+  transition: border-bottom 150ms ease-in-out;
+}
+
+.menu__link:hover {
+  border-bottom: 1px solid transparent;
 }
