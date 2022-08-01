@@ -25,7 +25,6 @@ const AboutMe = () => {
             постоянной работы.
           </p>
           <div className='about-me__links'>
-            {' '}
             <a href='' className='about-me__link-social'>
               Github
             </a>
