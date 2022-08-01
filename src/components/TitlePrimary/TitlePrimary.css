@@ -1,0 +1,15 @@
+.title-primary {
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+.title-primary_color_seconary {
+  color: #fff;
+}
+
+.title-primary_color_primary {
+  color: #000;
+}

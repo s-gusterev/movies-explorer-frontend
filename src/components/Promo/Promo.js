@@ -1,12 +1,16 @@
 import React from 'react';
 import './Promo.css';
+import TitlePrimary from '../TitlePrimary/TitlePrimary';
 
 const Promo = () => {
   return (
     <section className='promo'>
-      <h1 className='title-primary title-primary_color_seconary promo__title'>
+      <TitlePrimary
+        tagName={'h1'}
+        className='title-primary title-primary_color_seconary promo__title'
+      >
         Учебный проект студента факультета Веб-разработки.
-      </h1>
+      </TitlePrimary>
     </section>
   );
 };

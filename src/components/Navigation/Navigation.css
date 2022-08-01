@@ -17,13 +17,26 @@
 
 .navigation-auth__link_type_signin {
   color: #fff;
+  transition: opacity 300ms ease-in-out;
+}
+
+.navigation-auth__link_type_signin:hover {
+  opacity: 0.8;
 }
 
 .navigation-auth__link_type_signup {
   color: #000;
-  background-color: #2be080;
+  background: linear-gradient(to right, #24c06d 50%, #2be080 50%);
+  background-size: 200%;
+  background-position: right;
   padding: 8px 20px;
   border-radius: 3px;
+  transition: background 500ms ease-in-out, color 600ms ease-in-out;
+}
+
+.navigation-auth__link_type_signup:hover {
+  color: #fff;
+  background-position: left;
 }
 
 .navigation__link-movie-block {

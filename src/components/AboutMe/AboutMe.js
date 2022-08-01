@@ -1,6 +1,7 @@
 import React from 'react';
 import './AboutMe.css';
 import aboutPhoto from '../../images/about-me.jpg';
+import TitlePrimary from '../TitlePrimary/TitlePrimary';
 
 const AboutMe = () => {
   return (
@@ -8,9 +9,14 @@ const AboutMe = () => {
       <h2 className='title-secondary about-me__title'>Студент</h2>
       <div className='about-me__info'>
         <div className='about-me__text'>
-          <h3 className='title-primary title-primary_color_primary about-me__name'>
+          <TitlePrimary
+            tagName={'h3'}
+            className='title-primary title-primary_color_primary about-me__name'
+          >
             Сергей
-          </h3>
+          </TitlePrimary>
+
+          {/* <h3 className='title-primary title-primary_color_primary about-me__name'></h3> */}
           <p className='about-me__specialty'>Фронтенд-разработчик, 35 лет</p>
           <p className='about-me__description'>
             Я родился и живу в Ярославле. Первую книгу по HTML купил в 2008
@@ -18,9 +24,15 @@ const AboutMe = () => {
             курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с
             постоянной работы.
           </p>
-          <a href='' className='about-me__link-social'>
-            Github
-          </a>
+          <div className='about-me__links'>
+            {' '}
+            <a href='' className='about-me__link-social'>
+              Github
+            </a>
+            <a href='' className='about-me__link-social'>
+              Telegram
+            </a>
+          </div>
         </div>
         <img className='about-me__img' src={aboutPhoto} alt='Фото профиля' />
       </div>

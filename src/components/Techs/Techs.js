@@ -1,15 +1,25 @@
 import React from 'react';
 import './Techs.css';
 import { listTechs } from '../../utils/variables';
+import TitlePrimary from '../TitlePrimary/TitlePrimary';
+import TitleSecondary from '../TitleSecondary/TittleSecondary';
 
 const Techs = () => {
   return (
     <section className='techs'>
       <div className='root__container'>
-        <h2 className='title-secondary techs__title-primary'>Технологии</h2>
-        <h3 className='title-primary title-primary_color_primary techs__title-secondary'>
+        <TitleSecondary
+          tagName={'h2'}
+          className='title-secondary techs__title-primary'
+        >
+          Технологии
+        </TitleSecondary>
+        <TitlePrimary
+          tagName={'h3'}
+          className='title-primary title-primary_color_primary techs__title-secondary'
+        >
           7 технологий
-        </h3>
+        </TitlePrimary>
         <p className='techs__paragraph'>
           На курсе веб-разработки мы освоили технологии, которые применили в
           дипломном проекте.

@@ -1,10 +1,16 @@
 import React from 'react';
 import './AboutProject.css';
+import TitleSecondary from '../TitleSecondary/TittleSecondary';
 
 const AboutProject = () => {
   return (
     <section className='about-project root__container'>
-      <h2 className='title-secondary about-project__title'>О проекте</h2>
+      <TitleSecondary
+        tagName={'h2'}
+        className='title-secondary about-project__title'
+      >
+        О проекте
+      </TitleSecondary>
       <ul className='about-project__stages'>
         <li className='about-project__stage'>
           <h3 className='about-project__stage-title'>

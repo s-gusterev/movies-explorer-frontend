@@ -44,16 +44,29 @@
   margin: 0;
 }
 
+.about-me__links {
+  margin-top: auto;
+  max-width: 600px;
+}
+
 .about-me__link-social {
   display: inline-block;
-  margin-top: auto;
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
   letter-spacing: 0em;
   color: #000;
   text-decoration: none;
-  max-width: 600px;
+  margin-right: 20px;
+  transition: opacity 300ms ease-in-out;
+}
+
+.about-me__link-social:last-child {
+  margin-right: 0;
+}
+
+.about-me__link-social:hover {
+  opacity: 0.8;
 }
 
 .about-me__img {
