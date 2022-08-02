@@ -4,6 +4,13 @@
   padding-bottom: 20px;
 }
 
+.footer__container {
+  max-width: 1140px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0 auto;
+}
+
 .footer__description {
   font-size: 13px;
   font-weight: 400;
@@ -25,7 +32,6 @@
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0px;
-  text-align: left;
 }
 
 .footer__year {
@@ -49,4 +55,44 @@
 .footer__link {
   text-decoration: none;
   color: #000;
+  display: block;
+}
+
+@media screen and (max-width: 425px) {
+  .footer {
+    padding-bottom: 10px;
+  }
+
+  .footer__container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .footer__description {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 21px;
+  }
+  .footer__copy {
+    padding-top: 30px;
+    font-size: 12px;
+    line-height: 15px;
+    flex-direction: column-reverse;
+  }
+  .footer__links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .footer__item {
+    margin-bottom: 12px;
+    margin-right: 0;
+  }
+  .footer__item:last-child {
+    margin-bottom: 0;
+  }
+  .footer__year {
+    color: #a0a0a0;
+  }
 }

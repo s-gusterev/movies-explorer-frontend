@@ -12,3 +12,27 @@
   max-width: 730px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  .promo {
+    padding-top: 326px;
+    padding-bottom: 342px;
+  }
+
+  .promo__title {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .promo {
+    padding-top: 207px;
+    padding-bottom: 246px;
+  }
+
+  .promo__title {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

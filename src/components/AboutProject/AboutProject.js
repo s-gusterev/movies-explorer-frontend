@@ -34,7 +34,7 @@ const AboutProject = () => {
       <div className='about-project__stage-lines'>
         <div className='about-project__stage-line about-project__stage-line_type_true'>
           <h3 className='about-project__stage-line-title about-project__stage-line-title_type_true'>
-            1 Неделя
+            1 неделя
           </h3>
           <p className='about-project__stage-line-description'>Back-end</p>
         </div>

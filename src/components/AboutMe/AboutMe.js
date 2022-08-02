@@ -11,7 +11,7 @@ const AboutMe = () => {
         <div className='about-me__text'>
           <TitlePrimary
             tagName={'h3'}
-            className='title-primary title-primary_color_primary about-me__name'
+            className='title-primary title-primary_color_primary title-primary_font-size_m about-me__name'
           >
             Сергей
           </TitlePrimary>

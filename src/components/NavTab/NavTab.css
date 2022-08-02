@@ -35,3 +35,12 @@
 .menu__link:hover {
   border-bottom: 1px solid transparent;
 }
+
+@media screen and (max-width: 425px) {
+  .menu {
+    padding: 25px 0;
+  }
+  .menu__link {
+    font-size: 11px;
+  }
+}

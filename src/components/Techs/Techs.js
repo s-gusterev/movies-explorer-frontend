@@ -16,7 +16,7 @@ const Techs = () => {
         </TitleSecondary>
         <TitlePrimary
           tagName={'h3'}
-          className='title-primary title-primary_color_primary techs__title-secondary'
+          className='title-primary title-primary_color_primary title-primary_font-size_m techs__title-secondary'
         >
           7 технологий
         </TitlePrimary>

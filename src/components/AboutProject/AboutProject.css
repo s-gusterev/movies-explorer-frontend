@@ -23,6 +23,7 @@
   letter-spacing: -0.04em;
   margin-top: 0;
   margin-bottom: 26px;
+  max-width: 550px;
 }
 
 .about-project__stage-description {
@@ -73,4 +74,83 @@
   text-align: center;
   color: #a0a0a0;
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project__stages {
+    column-gap: 30px;
+    margin-bottom: 93px;
+  }
+
+  .about-project__stage-title {
+    max-width: 319px;
+    margin-bottom: 22px;
+  }
+
+  .about-project__stage-description {
+    max-width: 319px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-project__stage-line_type_true {
+    min-width: 140px;
+  }
+
+  .about-project__stage-line-title {
+    padding: 9px 10px;
+  }
+  .about-project {
+    padding-top: 90px;
+    padding-bottom: 90px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .about-project {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .about-project {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .about-project__stages {
+    flex-direction: column;
+    row-gap: 56px;
+    margin-bottom: 60px;
+  }
+  .about-project__stage-title {
+    max-width: 100%;
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .about-project__stage-description {
+    max-width: 100%;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-project__stage-line_type_true {
+    min-width: 100px;
+  }
+  .about-project__title {
+    margin-bottom: 60px;
+  }
+  .about-project__stage-line-title {
+    font-size: 11px;
+    line-height: 13px;
+    margin-bottom: 10px;
+  }
+  .about-project__stage-line-description {
+    font-size: 11px;
+    line-height: 13px;
+  }
 }
