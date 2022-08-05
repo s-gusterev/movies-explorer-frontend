@@ -1,11 +1,24 @@
 .header {
   padding: 18px 0;
+}
+
+.header_color_dark {
   background-color: #5c5c5c;
-  /* background-color: #fff; */
+}
+
+.header_color_light {
+  background-color: #fff;
 }
 
 .header__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 425px) {
+  .header__container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
 }

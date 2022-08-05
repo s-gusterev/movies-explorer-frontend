@@ -3,11 +3,16 @@ import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import Movies from '../Movies/Movies';
 const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <Main />
+      <main className='main'>
+        {/* <Main /> */}
+        <Movies />
+      </main>
+
       <Footer />
     </React.Fragment>
   );

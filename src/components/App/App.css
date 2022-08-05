@@ -5,6 +5,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .root__container {
@@ -16,7 +19,7 @@
 
 @media screen and (max-width: 425px) {
   .root__container {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

@@ -7,14 +7,14 @@ import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
 const Main = () => {
   return (
-    <main className='main'>
+    <React.Fragment>
       <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
-    </main>
+    </React.Fragment>
   );
 };
 
