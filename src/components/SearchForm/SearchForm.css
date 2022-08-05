@@ -90,6 +90,7 @@
   position: absolute;
   z-index: -1;
   opacity: 0;
+  cursor: pointer;
 }
 
 .search__label {
@@ -99,6 +100,7 @@
   line-height: 18px;
   letter-spacing: 0em;
   padding-left: 50px;
+  cursor: pointer;
 }
 
 .search__label::before {

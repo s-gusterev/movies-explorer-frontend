@@ -1,21 +1,24 @@
 import React from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import { movieList } from '../../utils/variables';
 
-const MoviesCardList = () => {
+const MoviesCardList = (props) => {
   return (
-    <ul className='movies-list'>
-      {movieList.map((card, index) => (
-        <MoviesCard
-          key={index}
-          link={card.image}
-          title={card.title}
-          time={card.time}
-          like={card.like}
-        />
-      ))}
-    </ul>
+    <React.Fragment>
+      <ul className='movies-list movies-list_type_true'>
+        {props.arr.map((card) => (
+          <MoviesCard
+            key={card.id}
+            link={card.image}
+            title={card.title}
+            time={card.time}
+            like={card.like}
+            isLike={card.like}
+          />
+        ))}
+      </ul>
+      <button className='movies__button'>Ещё</button>
+    </React.Fragment>
   );
 };
 
