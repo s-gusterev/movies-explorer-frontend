@@ -1,43 +1,59 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = () => {
-  return (
-    <React.Fragment>
-      <nav className='navigation__link-movie-block'>
-        <a
-          href=''
-          className='navigation__link-movie navigation__link-movie_type_true'
-        >
-          Фильмы
-        </a>
-        <a
-          href=''
-          className='navigation__link-movie navigation__link-movie_type_false'
-        >
-          Сохранённые фильмы
-        </a>
-      </nav>
+  let location = useLocation();
+  let navigation;
+
+  if (
+    location.pathname === '/movies' ||
+    location.pathname === '/saved-movies' ||
+    location.pathname === '/profile'
+  ) {
+    navigation = (
+      <React.Fragment>
+        <nav className='navigation__link-movie-block'>
+          <Link
+            to='/movies'
+            className='navigation__link-movie navigation__link-movie_type_true'
+          >
+            Фильмы
+          </Link>
+          <Link
+            to='/saved-movies'
+            className='navigation__link-movie navigation__link-movie_type_false'
+          >
+            Сохранённые фильмы
+          </Link>
+        </nav>
+        <nav className='navigation-auth'>
+          <Link className='navigation-auth__link-account' to='/profile'>
+            Аккаунт
+          </Link>
+        </nav>
+      </React.Fragment>
+    );
+  }
+  if (location.pathname === '/') {
+    navigation = (
       <nav className='navigation-auth'>
-        {/* <a
+        <Link
           className='navigation-auth__link navigation-auth__link_type_signin'
-          href='/'
+          to='/signup'
         >
           Регистрация
-        </a>
-        <a
+        </Link>
+        <Link
           className='navigation-auth__link navigation-auth__link_type_signup'
-          href='/'
+          to='/signin'
         >
           Войти
-        </a> */}
-
-        <a className='navigation-auth__link-account' href='/'>
-          Аккаунт
-        </a>
+        </Link>
       </nav>
-    </React.Fragment>
-  );
+    );
+  }
+  return navigation;
 };
 
 export default Navigation;

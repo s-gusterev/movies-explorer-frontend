@@ -12,17 +12,29 @@ const Footer = () => {
           <p className='footer__year'>© 2022</p>
           <ul className='footer__links'>
             <li className='footer__item'>
-              <a href='' className='footer__link'>
+              <a
+                href='https://practicum.yandex.ru'
+                className='footer__link'
+                target='_blank'
+              >
                 Яндекс.Практикум
               </a>
             </li>
             <li className='footer__item'>
-              <a href='' className='footer__link'>
+              <a
+                href='https://github.com/s-gusterev'
+                className='footer__link'
+                target='_blank'
+              >
                 Github
               </a>
             </li>
             <li className='footer__item'>
-              <a href='' className='footer__link'>
+              <a
+                href='https://t.me/se_gus'
+                className='footer__link'
+                target='_blank'
+              >
                 Telegram
               </a>
             </li>

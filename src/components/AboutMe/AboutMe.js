@@ -15,8 +15,6 @@ const AboutMe = () => {
           >
             Сергей
           </TitlePrimary>
-
-          {/* <h3 className='title-primary title-primary_color_primary about-me__name'></h3> */}
           <p className='about-me__specialty'>Фронтенд-разработчик, 35 лет</p>
           <p className='about-me__description'>
             Я родился и живу в Ярославле. Первую книгу по HTML купил в 2008
@@ -25,10 +23,18 @@ const AboutMe = () => {
             постоянной работы.
           </p>
           <div className='about-me__links'>
-            <a href='' className='about-me__link-social'>
+            <a
+              href='https://github.com/s-gusterev'
+              className='about-me__link-social'
+              target='_blank'
+            >
               Github
             </a>
-            <a href='' className='about-me__link-social'>
+            <a
+              href='https://t.me/se_gus'
+              className='about-me__link-social'
+              target='_blank'
+            >
               Telegram
             </a>
           </div>

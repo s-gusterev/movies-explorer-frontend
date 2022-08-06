@@ -40,7 +40,7 @@ const Login = () => {
       <ParagraphLoginRegist
         text='Ещё не зарегистрированы?'
         linkText='Регистрация'
-        link='/'
+        link='/signup'
       />
     </ContainerLoginRegistr>
   );
