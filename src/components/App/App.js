@@ -8,6 +8,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Registr from '../Registr/Registr';
 import Login from '../Login/Login';
+import NotFound from '../NotFound/NotFound';
 const App = () => {
   return (
     <React.Fragment>
@@ -18,7 +19,8 @@ const App = () => {
         {/* <SavedMovies /> */}
         {/* <Profile name='Виталий' email='pochta@yandex.ru' /> */}
         {/* <Registr /> */}
-        <Login />
+        {/* <Login /> */}
+        <NotFound />
       </main>
 
       {/* <Footer /> */}
