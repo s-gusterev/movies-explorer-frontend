@@ -2,9 +2,9 @@ import React from 'react';
 import './Logo.css';
 import logo from '../../images/logo.svg';
 
-const Logo = () => {
+const Logo = (props) => {
   return (
-    <a href='/' className='logo'>
+    <a href='/' className={`logo ${props.className}`}>
       <img className='logo__img' src={logo} alt='Логотип' />
     </a>
   );

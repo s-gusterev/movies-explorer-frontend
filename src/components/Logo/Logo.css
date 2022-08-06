@@ -1,6 +1,7 @@
 .logo {
   display: block;
   transition: opacity 300ms ease-in-out;
+  width: max-content;
 }
 
 .logo:hover {

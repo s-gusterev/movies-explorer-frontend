@@ -1,0 +1,37 @@
+.login-registr {
+  max-width: 396px;
+  margin: 0 auto;
+  padding-top: 70px;
+}
+
+.login-registr__logo {
+  margin-bottom: 40px;
+}
+
+.login-registr__title {
+  padding-bottom: 40px;
+}
+
+.login-registr__input_type_true {
+  margin-bottom: 20px;
+}
+
+.login-registr__input_type_false {
+  margin-bottom: 0;
+}
+
+.login-registr__input:last-child {
+  margin-bottom: 0;
+}
+
+.login-registr__button {
+  margin-bottom: 16px;
+}
+
+.login-registr__button_type_true {
+  margin-top: 69px;
+}
+
+.login-registr__button_type_false {
+  margin-top: 179px;
+}

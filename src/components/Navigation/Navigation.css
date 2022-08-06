@@ -1,6 +1,7 @@
 .navigation-auth {
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 
 .navigation-auth__link {
@@ -42,6 +43,8 @@
 .navigation__link-movie-block {
   display: flex;
   align-items: center;
+  margin-left: auto;
+  margin-right: -60px;
 }
 
 .navigation__link-movie {
