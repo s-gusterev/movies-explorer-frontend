@@ -1,19 +1,30 @@
 import React from 'react';
 import './Input.css';
-const Input = ({ label, placeholder, id, name, type, className }) => {
+const Input = ({
+  label,
+  placeholder,
+  id,
+  name,
+  type,
+  className,
+  value,
+  error,
+}) => {
   return (
-    <React.Fragment>
+    <div className='input-container'>
       <label className='label' htmlFor={id}>
         {label}
       </label>
       <input
-        className={`input ${className}`}
+        className={`input  ${className}`}
         type={type}
         placeholder={placeholder}
         id={id}
         name={name}
+        defaultValue={value}
       />
-    </React.Fragment>
+      <span className='input__error'>{error}</span>
+    </div>
   );
 };
 

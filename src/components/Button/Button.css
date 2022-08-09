@@ -12,3 +12,8 @@
   letter-spacing: 0em;
   text-align: center;
 }
+
+.button:disabled {
+  background-color: #b9b9b9;
+  pointer-events: none;
+}

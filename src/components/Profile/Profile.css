@@ -34,14 +34,19 @@
   font-size: 11px;
   line-height: 13px;
   letter-spacing: 0px;
+  outline: none;
+  border: none;
 }
 
 .profile__item_type_true {
   font-weight: 500;
+  width: 20%;
 }
 
 .profile__item_type_false {
   font-weight: 400;
+  text-align: right;
+  width: 80%;
 }
 
 .profile__button {
@@ -60,6 +65,11 @@
   cursor: pointer;
 }
 
+.profile__button:disabled {
+  color: #b9b9b9;
+  pointer-events: none;
+}
+
 .profile__logout {
   display: block;
   margin: 0 auto;
@@ -70,4 +80,16 @@
   line-height: 16px;
   letter-spacing: 0px;
   color: #ee3465;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    padding-top: 236px;
+  }
+  .profile__title {
+    margin-bottom: 96px;
+  }
+  .profile__info_type_false {
+    margin-bottom: 210px;
+  }
 }

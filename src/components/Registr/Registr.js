@@ -23,6 +23,7 @@ const Registr = () => {
           name='name'
           type='text'
           className='login-registr__input login-registr__input_type_true'
+          value=''
         />
         <Input
           label='E-mail'
@@ -43,12 +44,13 @@ const Registr = () => {
         <Button
           text='Зарегистрироваться'
           className='login-registr__button login-registr__button_type_true'
+          disabled={false}
         />
       </Form>
       <ParagraphLoginRegist
         text='Уже зарегистрированы?'
         linkText='Войти'
-        link='/'
+        link='/signin'
       />
     </ContainerLoginRegistr>
   );

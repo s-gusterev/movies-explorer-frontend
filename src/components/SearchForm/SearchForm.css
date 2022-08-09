@@ -68,6 +68,7 @@
   max-width: 720px;
   outline: none;
   position: relative;
+  padding: 0;
 }
 
 .search__input:focus {
@@ -136,12 +137,8 @@
   left: 18px;
 }
 
-rererer {
-  box-sizing: border-box;
-  width: 36px;
-  height: 20px;
-  background-color: #fff;
-  box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08),
-    0px 4px 8px rgba(50, 50, 71, 0.06);
-  border-radius: 16px;
+@media screen and (max-width: 768px) {
+  .search::after {
+    bottom: -109px;
+  }
 }

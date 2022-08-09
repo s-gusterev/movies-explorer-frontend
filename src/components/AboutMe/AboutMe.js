@@ -5,7 +5,7 @@ import TitlePrimary from '../TitlePrimary/TitlePrimary';
 
 const AboutMe = () => {
   return (
-    <section className='about-me root__container'>
+    <section className='about-me root__container' id='student'>
       <h2 className='title-secondary about-me__title'>Студент</h2>
       <div className='about-me__info'>
         <div className='about-me__text'>

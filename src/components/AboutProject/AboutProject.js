@@ -4,7 +4,7 @@ import TitleSecondary from '../TitleSecondary/TittleSecondary';
 
 const AboutProject = () => {
   return (
-    <section className='about-project root__container'>
+    <section className='about-project root__container' id='about'>
       <TitleSecondary
         tagName={'h2'}
         className='title-secondary about-project__title'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -14,23 +14,52 @@ const Navigation = () => {
     navigation = (
       <React.Fragment>
         <nav className='navigation__link-movie-block'>
-          <Link
+          <NavLink
             to='/movies'
-            className='navigation__link-movie navigation__link-movie_type_true'
+            className='navigation__link-movie navigation__link-movie_type_false'
+            activeClassName='navigation__link-movie navigation__link-movie_type_true'
           >
             Фильмы
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to='/saved-movies'
             className='navigation__link-movie navigation__link-movie_type_false'
+            activeClassName='navigation__link-movie navigation__link-movie_type_true'
           >
             Сохранённые фильмы
-          </Link>
+          </NavLink>
         </nav>
         <nav className='navigation-auth'>
           <Link className='navigation-auth__link-account' to='/profile'>
             Аккаунт
           </Link>
+          <button className='navigation-button'></button>
+        </nav>
+        <nav className='navigation-mobile'>
+          <Link className='navigation-mobile__link' to='/'>
+            Главная
+          </Link>
+          <NavLink
+            className='navigation-mobile__link'
+            activeClassName='navigation-mobile__link_active'
+            to='/movies'
+          >
+            Фильмы
+          </NavLink>
+          <NavLink
+            className='navigation-mobile__link'
+            activeClassName='navigation-mobile__link_active'
+            to='/saved-movies'
+          >
+            Сохранённые фильмы
+          </NavLink>
+          <NavLink className='navigation-mobile__account' to='/profile'>
+            Аккаунт
+          </NavLink>
+          <button
+            className='navigation-mobile__button-close'
+            type='button'
+          ></button>
         </nav>
       </React.Fragment>
     );

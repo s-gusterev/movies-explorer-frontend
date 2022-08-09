@@ -25,3 +25,13 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .movies {
+    padding-top: 80px;
+  }
+
+  .movies__search {
+    margin-bottom: 109px;
+  }
+}

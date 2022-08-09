@@ -23,6 +23,7 @@ const Login = () => {
           name='email'
           type='email'
           className='login-registr__input login-registr__input_type_true'
+          error='Что-то пошло не так ...'
         />
         <Input
           label='Пароль'
@@ -35,6 +36,7 @@ const Login = () => {
         <Button
           text='Войти'
           className='login-registr__button login-registr__button_type_false'
+          disabled={false}
         />
       </Form>
       <ParagraphLoginRegist
