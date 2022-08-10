@@ -91,3 +91,21 @@
     margin-top: 15px;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .movie-card__image {
+    height: 168px;
+  }
+  .movie-card__description {
+    padding: 7px 10px 14px 14px;
+  }
+  .movie-card__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .movie-card__time {
+    font-size: 10px;
+    line-height: 12px;
+    margin-top: 14px;
+  }
+}

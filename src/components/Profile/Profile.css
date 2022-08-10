@@ -11,6 +11,8 @@
   line-height: 29px;
   letter-spacing: 0em;
   text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .profile__info {
@@ -91,5 +93,28 @@
   }
   .profile__info_type_false {
     margin-bottom: 210px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile {
+    padding-top: 70px;
+  }
+  .profile__info {
+    max-width: 260px;
+  }
+  .profile__title {
+    margin-bottom: 80px;
+  }
+  .profile__info_type_false {
+    margin-bottom: 379px;
+  }
+  .profile__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .profile__logout {
+    font-size: 12px;
+    line-height: 15px;
   }
 }

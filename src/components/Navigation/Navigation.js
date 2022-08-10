@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = () => {
+  const [visibleMobileMenu, setVisibleMobileMenu] = useState(false);
+  const ref = useRef();
+
+  const openMenu = () => {
+    setVisibleMobileMenu(true);
+  };
+  const closeMenu = () => {
+    setVisibleMobileMenu(false);
+  };
+
+  useEffect(() => {
+    const clickedOutside = (e) => {
+      if (visibleMobileMenu && ref.current && !ref.current.contains(e.target)) {
+        setVisibleMobileMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', clickedOutside);
+    return () => {
+      document.removeEventListener('mousedown', clickedOutside);
+    };
+  }, [visibleMobileMenu]);
+
   let location = useLocation();
   let navigation;
 
@@ -33,9 +55,14 @@ const Navigation = () => {
           <Link className='navigation-auth__link-account' to='/profile'>
             Аккаунт
           </Link>
-          <button className='navigation-button'></button>
+          <button onClick={openMenu} className='navigation-button'></button>
         </nav>
-        <nav className='navigation-mobile'>
+        <nav
+          ref={ref}
+          className={`navigation-mobile ${
+            visibleMobileMenu ? 'navigation-mobile_visible' : ''
+          } `}
+        >
           <Link className='navigation-mobile__link' to='/'>
             Главная
           </Link>
@@ -57,6 +84,7 @@ const Navigation = () => {
             Аккаунт
           </NavLink>
           <button
+            onClick={closeMenu}
             className='navigation-mobile__button-close'
             type='button'
           ></button>

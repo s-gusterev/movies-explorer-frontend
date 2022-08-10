@@ -31,3 +31,27 @@
   display: block;
   width: max-content;
 }
+
+@media screen and (max-width: 768px) {
+  .not-found-title {
+    padding-top: 408px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .not-found-title {
+    padding-top: 329px;
+    padding-bottom: 10px;
+    font-size: 80px;
+    line-height: 97px;
+  }
+  .not-found-description {
+    font-size: 12px;
+    line-height: 15px;
+    padding-bottom: 284px;
+  }
+  .not-found-link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

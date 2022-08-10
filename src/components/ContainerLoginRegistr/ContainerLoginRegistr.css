@@ -35,3 +35,27 @@
 .login-registr__button_type_false {
   margin-top: 179px;
 }
+
+@media screen and (max-width: 768px) {
+  .login-registr {
+    padding-top: 232px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .login-registr {
+    padding-top: 56px;
+    max-width: 260px;
+  }
+  .login-registr__logo {
+    margin: 0px auto 50px auto;
+  }
+  .login-registr__title {
+    padding-bottom: 80px;
+  }
+  .login-registr__button_type_true {
+    margin-top: 179px;
+  }
+  .login-registr__button_type_false {
+    margin-top: 267px;
+  }
+}

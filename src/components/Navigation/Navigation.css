@@ -167,8 +167,33 @@
   .navigation-mobile {
     display: flex;
     transform: translateX(100%);
+    opacity: 0;
+    transition: transform 350ms ease-in-out, opacity 450ms ease-in;
   }
   .navigation-mobile_visible {
     transform: translateX(0);
+    opacity: 1;
+    transition: transform 350ms ease-in-out, opacity 450ms ease-in;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .navigation-mobile {
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navigation-mobile {
+    width: 100vw;
+    padding: 144px 10px 46px 10px;
+  }
+  .navigation-mobile__button-close {
+    top: 13px;
+    right: 13px;
+  }
+  .navigation-mobile__link {
+    margin-bottom: 17px;
+    padding-bottom: 7px;
   }
 }

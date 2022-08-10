@@ -6,3 +6,9 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+@media screen and (max-width: 425px) {
+  .title-login-registr {
+    text-align: center;
+  }
+}
