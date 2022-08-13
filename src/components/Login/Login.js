@@ -36,7 +36,7 @@ const Login = () => {
         <Button
           text='Войти'
           className='login-registr__button login-registr__button_type_false'
-          disabled={false}
+          disabled={true}
         />
       </Form>
       <ParagraphLoginRegist

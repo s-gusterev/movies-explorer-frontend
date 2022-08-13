@@ -85,6 +85,11 @@
   border: none;
   margin-left: 46px;
   cursor: pointer;
+  transition: transform 350ms ease-in-out;
+}
+
+.search__button:hover {
+  transform: scale(1.1);
 }
 
 .search__checkbox {
