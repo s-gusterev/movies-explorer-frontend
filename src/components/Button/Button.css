@@ -1,0 +1,26 @@
+.button {
+  background-color: #2be080;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding-top: 13px;
+  padding-bottom: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.button:disabled {
+  background-color: #b9b9b9;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 425px) {
+  .button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

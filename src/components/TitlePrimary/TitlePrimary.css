@@ -1,0 +1,38 @@
+.title-primary {
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.title-primary_font-size_l {
+  font-size: 50px;
+  line-height: 58px;
+}
+
+.title-primary_font-size_m {
+  font-size: 50px;
+  line-height: 58px;
+}
+
+.title-primary_color_seconary {
+  color: #fff;
+}
+
+.title-primary_color_primary {
+  color: #000;
+}
+
+@media screen and (max-width: 425px) {
+  .title-primary {
+    font-size: 31px;
+    line-height: 39px;
+  }
+  .title-primary_font-size_l {
+    font-size: 31px;
+    line-height: 39px;
+  }
+
+  .title-primary_font-size_m {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}

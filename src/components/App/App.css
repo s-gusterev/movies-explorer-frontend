@@ -1,0 +1,26 @@
+.root {
+  color: #000;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+}
+
+.root__container {
+  max-width: 1140px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 425px) {
+  .root__container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
