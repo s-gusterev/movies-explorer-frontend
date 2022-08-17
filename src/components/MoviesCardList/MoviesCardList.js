@@ -8,7 +8,6 @@ const MoviesCardList = (props) => {
     props.arr.length !== props.nextMovies &&
     props.arr.length > props.nextMovies;
 
-  console.log(renderElement);
   return (
     <React.Fragment>
       <ul

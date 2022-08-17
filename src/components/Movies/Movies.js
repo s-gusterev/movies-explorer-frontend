@@ -8,14 +8,37 @@ import moviesApi from '../../utils/MoviesApi';
 
 const Movies = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(' ');
   const [visiblePreloader, setVisiblePreloader] = useState(false);
   const [shortFilms, setShortFilms] = useState(false);
   const [next, setNext] = useState(0);
+  const [notFoundError, setNotFoundError] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [counter, setCounter] = useState(0);
 
-  function handleMoreMovies() {
-    setNext(() => next + 3);
-  }
+  const handleMoreMovies = () => {
+    return setNext(() => next + counter);
+  };
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+    if (width >= 1280) {
+      setNext(12);
+      setCounter(3);
+    }
+    if (width <= 1199 && width > 689) {
+      setNext(8);
+      setCounter(2);
+    }
+    if (width <= 689) {
+      setNext(5);
+      setCounter(2);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [width]);
 
   const searchSubmit = (e) => {
     e.preventDefault();
@@ -28,27 +51,39 @@ const Movies = () => {
         });
       })
       .then((movies) => {
-        console.log(movies);
         let filtered = movies;
-        console.log(filtered);
+
         if (search) {
           const searchFilm = search.toLowerCase();
           localStorage.setItem('search', searchFilm);
           filtered = filtered.filter((item) => {
-            return String(item.country).toLowerCase().includes(searchFilm);
+            return (
+              String(item.nameEN).toLowerCase().includes(searchFilm) ||
+              String(item.nameRU).toLowerCase().includes(searchFilm) ||
+              String(item.country).toLowerCase().includes(searchFilm) ||
+              String(item.description).toLowerCase().includes(searchFilm) ||
+              String(item.director).toLowerCase().includes(searchFilm) ||
+              String(item.year).toLowerCase().includes(searchFilm)
+            );
           });
+          localStorage.setItem('movies', JSON.stringify(filtered));
         }
-
         if (shortFilms) {
           filtered = filtered.filter((item) => item.duration <= 40);
         }
-        localStorage.setItem('movies', JSON.stringify(filtered));
+
+        if (filtered.length === 0) {
+          setNotFoundError(true);
+        }
+        if (filtered.length > 0) {
+          setNotFoundError(false);
+        }
+
         localStorage.setItem('shortFilms', shortFilms);
         setFilteredMovies(filtered);
-        setNext(3);
       })
       .catch((err) => {
-        console.log(err);
+        setNotFoundError(true);
       })
       .finally(() => {
         setVisiblePreloader(false);
@@ -56,16 +91,34 @@ const Movies = () => {
   };
 
   useEffect(() => {
+    let filtered = JSON.parse(localStorage.getItem('movies')) || [];
+    if (shortFilms) {
+      filtered = filtered.filter((item) => item.duration <= 40);
+    }
+
+    if (filtered.length === 0) {
+      setNotFoundError(true);
+    }
+    if (filtered.length > 0) {
+      setNotFoundError(false);
+    }
+    setFilteredMovies(filtered);
+    return () => localStorage.setItem('shortFilms', shortFilms);
+  }, [shortFilms]);
+
+  useEffect(() => {
     let movies = JSON.parse(localStorage.getItem('movies')) || [];
-    let checked = JSON.parse(localStorage.getItem('shortFilms'));
+    let checked = JSON.parse(localStorage.getItem('shortFilms') || false);
     let search = localStorage.getItem('search') || '';
-
     setFilteredMovies(movies);
-
     setShortFilms(checked);
+
     setSearch(search);
-    setNext(3);
     handleMoreMovies();
+    handleResize();
+    if (movies.length === 0) {
+      setNotFoundError(false);
+    }
   }, []);
 
   return (
@@ -84,7 +137,9 @@ const Movies = () => {
         nextMovies={next}
         onclickButton={handleMoreMovies}
       >
-        {filteredMovies.length === 0 && <p>Ничего не найдено</p>}
+        {notFoundError && (
+          <p className='movies__not-found'>Ничего не найдено</p>
+        )}
       </MoviesCardList>
     </div>
   );
