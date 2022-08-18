@@ -9,6 +9,7 @@ const Input = ({
   className,
   value,
   error,
+  onChange,
 }) => {
   return (
     <div className='input-container'>
@@ -21,7 +22,8 @@ const Input = ({
         placeholder={placeholder}
         id={id}
         name={name}
-        defaultValue={value}
+        value={value}
+        onChange={onChange}
       />
       <span className='input__error'>{error}</span>
     </div>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import Logo from '../Logo/Logo';
 import ContainerLoginRegistr from '../ContainerLoginRegistr/ContainerLoginRegistr';
 import TitleLoginRegistr from '../TitleLoginRegistr/TitleLoginRegistr';
@@ -7,7 +8,28 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ParagraphLoginRegist from '../ParagraphLoginRegist/ParagraphLoginRegist';
 
-const Registr = () => {
+const Registr = ({ handleRegister }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    handleRegister({ name, password, email });
+  };
+
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <ContainerLoginRegistr>
       <Logo className='login-registr__logo' />
@@ -15,7 +37,7 @@ const Registr = () => {
         title='Добро пожаловать!'
         className='login-registr__title'
       />
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           label='Имя'
           placeholder='Имя'
@@ -23,7 +45,8 @@ const Registr = () => {
           name='name'
           type='text'
           className='login-registr__input login-registr__input_type_true'
-          value=''
+          value={name}
+          onChange={handleChangeName}
         />
         <Input
           label='E-mail'
@@ -32,6 +55,8 @@ const Registr = () => {
           name='email'
           type='email'
           className='login-registr__input login-registr__input_type_true'
+          value={email}
+          onChange={handleChangeEmail}
         />
         <Input
           label='Пароль'
@@ -40,6 +65,8 @@ const Registr = () => {
           name='password'
           type='password'
           className='login-registr__input login-registr__input_type_false'
+          value={password}
+          onChange={handleChangePassword}
         />
         <Button
           text='Зарегистрироваться'

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Movies.css';
 import '../SearchForm/SearchForm';
 import SearchForm from '../SearchForm/SearchForm';
@@ -6,15 +6,22 @@ import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
 
+import { SEARCH_REGEX } from '../../utils/variables';
+
 const Movies = () => {
+  const searchRef = useRef();
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [search, setSearch] = useState(' ');
+  const [search, setSearch] = useState('');
   const [visiblePreloader, setVisiblePreloader] = useState(false);
   const [shortFilms, setShortFilms] = useState(false);
   const [next, setNext] = useState(0);
   const [notFoundError, setNotFoundError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [counter, setCounter] = useState(0);
+  const [validSearch, setValidSearch] = useState(false);
+  const [searchFocus, setSearchFocus] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleMoreMovies = () => {
     return setNext(() => next + counter);
@@ -42,6 +49,11 @@ const Movies = () => {
 
   const searchSubmit = (e) => {
     e.preventDefault();
+    const searchValue = SEARCH_REGEX.test(search);
+    if (!searchValue) {
+      setErrorMessage('Ошибка - введите ключевое слово');
+      return;
+    }
     setVisiblePreloader(true);
     moviesApi
       .getCardsMovies()
@@ -83,6 +95,7 @@ const Movies = () => {
         setFilteredMovies(filtered);
       })
       .catch((err) => {
+        if (err > 400) return setServerError(true);
         setNotFoundError(true);
       })
       .finally(() => {
@@ -107,6 +120,17 @@ const Movies = () => {
   }, [shortFilms]);
 
   useEffect(() => {
+    setValidSearch(SEARCH_REGEX.test(search));
+    if (!validSearch) {
+      setErrorMessage(
+        'Введите ключевое слово - страну, год, название, режиссер'
+      );
+      return;
+    }
+    setErrorMessage('Введено невалидное значение');
+  }, [search]);
+
+  useEffect(() => {
     let movies = JSON.parse(localStorage.getItem('movies')) || [];
     let checked = JSON.parse(localStorage.getItem('shortFilms') || false);
     let search = localStorage.getItem('search') || '';
@@ -119,6 +143,7 @@ const Movies = () => {
     if (movies.length === 0) {
       setNotFoundError(false);
     }
+    searchRef.current.focus();
   }, []);
 
   return (
@@ -131,6 +156,11 @@ const Movies = () => {
         chengeCheckbox={(e) => setShortFilms(e.target.checked)}
         search={search}
         onChange={(e) => setSearch(e.target.value)}
+        valueRef={searchRef}
+        onFocus={() => setSearchFocus(true)}
+        onBlur={() => setSearchFocus(false)}
+        visibleError={validSearch || !searchFocus}
+        errorMessage={errorMessage}
       />
       <MoviesCardList
         arr={filteredMovies}
@@ -139,6 +169,12 @@ const Movies = () => {
       >
         {notFoundError && (
           <p className='movies__not-found'>Ничего не найдено</p>
+        )}
+        {serverError && (
+          <p className='movies__not-found'>
+            Во время запроса произошла ошибка. Возможно, проблема с соединением
+            или сервер недоступен. Подождите немного и попробуйте ещё раз
+          </p>
         )}
       </MoviesCardList>
     </div>

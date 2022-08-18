@@ -1,7 +1,7 @@
 import React from 'react';
 import './MoviesCard.css';
 
-const MoviesCard = ({ link, title, time, like, added }) => {
+const MoviesCard = ({ link, title, time, like, added, trailerLink }) => {
   const getTimeFromMins = (mins) => {
     let hours = Math.trunc(mins / 60);
     let minutes = mins % 60;
@@ -16,15 +16,21 @@ const MoviesCard = ({ link, title, time, like, added }) => {
 
   return (
     <li className='movie-card'>
-      <img
-        className='movie-card__image'
-        src={`https://api.nomoreparties.co/${link}`}
-        alt={title}
-      />
+      <a href={trailerLink} className='movie-card__link' target='_blank'>
+        <img
+          className='movie-card__image'
+          src={`https://api.nomoreparties.co/${link}`}
+          alt={title}
+        />
+      </a>
+
       <div className='movie-card__description'>
         <h2 className='movie-card__title'>{title}</h2>
         {!added ? (
           <button
+            onClick={() => {
+              console.log('click');
+            }}
             className={`movie-card__like ${
               like ? 'movie-card__like_active' : ''
             }`}

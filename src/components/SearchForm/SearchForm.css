@@ -142,6 +142,18 @@
   left: 18px;
 }
 
+.search__error {
+  position: absolute;
+  left: 0;
+  top: 32px;
+  color: #ee3465;
+  font-size: 12px;
+}
+
+.search__error_hide {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .search::after {
     bottom: -109px;

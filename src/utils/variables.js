@@ -126,4 +126,6 @@ const movieList = [
   },
 ];
 
-export { listTechs, linksPortfolio, movieList };
+const SEARCH_REGEX = /^[а-яА-ЯёЁa-zA-Z0-9-]{2,36}$/;
+
+export { listTechs, linksPortfolio, movieList, SEARCH_REGEX };

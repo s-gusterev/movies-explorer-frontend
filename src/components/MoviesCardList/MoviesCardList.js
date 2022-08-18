@@ -25,6 +25,7 @@ const MoviesCardList = (props) => {
             time={card.duration}
             like={card.like}
             isLike={card.like}
+            trailerLink={card.trailerLink}
           />
         ))}
       </ul>

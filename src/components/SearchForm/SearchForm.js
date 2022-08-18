@@ -3,11 +3,15 @@ import './SearchForm.css';
 
 const SearchForm = ({
   onSubmit,
-  // valueRef,
+  valueRef,
   checked,
   chengeCheckbox,
   search,
   onChange,
+  onFocus,
+  onBlur,
+  visibleError,
+  errorMessage,
 }) => {
   return (
     <form className='search movies__search' onSubmit={onSubmit}>
@@ -18,10 +22,19 @@ const SearchForm = ({
           className='search__input'
           placeholder='Фильм'
           required
-          // ref={valueRef}
+          ref={valueRef}
           value={search}
           onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
+        <span
+          className={`${
+            visibleError ? 'search__error search__error_hide' : 'search__error'
+          }`}
+        >
+          {errorMessage}
+        </span>
         <button type='submit' className='search__button'></button>
       </div>
       <div className='search__checkbox-container'>
