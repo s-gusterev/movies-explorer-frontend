@@ -8,6 +8,8 @@ const MoviesCardList = (props) => {
     props.arr.length !== props.nextMovies &&
     props.arr.length > props.nextMovies;
 
+  // const isLiked = props.isLike(props.movie);
+
   return (
     <React.Fragment>
       <ul
@@ -19,13 +21,15 @@ const MoviesCardList = (props) => {
       >
         {props.arr.slice(0, props.nextMovies).map((card) => (
           <MoviesCard
+            movie={card}
             key={card.id}
             link={card.image.url}
             title={card.nameRU}
             time={card.duration}
-            like={card.like}
-            isLike={card.like}
             trailerLink={card.trailerLink}
+            onSaveMovie={props.onSaveMovie}
+            isLike={props.isLike}
+            onDeleteMovie={props.onDeleteMovie}
           />
         ))}
       </ul>

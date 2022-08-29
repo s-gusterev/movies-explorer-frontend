@@ -40,3 +40,25 @@
   bottom: 0;
   left: 0;
 }
+
+.input__error_hide {
+  display: none;
+}
+
+.error-api {
+  margin: 0;
+  color: #ee3465;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.message-api {
+  margin: 0;
+  color: #2be080;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}

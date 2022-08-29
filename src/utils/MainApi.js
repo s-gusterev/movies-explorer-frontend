@@ -9,9 +9,7 @@ class Api {
       return res.json();
     }
 
-    return res.json().then((data) => {
-      throw new Error(data.message);
-    });
+    return Promise.reject(res.status);
   }
 
   // Получаем данные о пользователе
@@ -26,7 +24,7 @@ class Api {
 
   // Получение карточек
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/movies`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -35,7 +33,7 @@ class Api {
   }
 
   // Редактирование профиля
-  editProfile(name, about) {
+  editProfile(name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -44,74 +42,43 @@ class Api {
       },
       body: JSON.stringify({
         name,
-        about,
+        email,
       }),
     }).then(this._checkResponse);
   }
 
   // Добавление карточки
-  addCard(name, link) {
-    return fetch(`${this._baseUrl}/cards`, {
+  addMovie(movie) {
+    return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
       body: JSON.stringify({
-        name,
-        link,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `https://api.nomoreparties.co${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
       }),
     }).then(this._checkResponse);
   }
 
   // Удаление карточки
-  delCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}`, {
+  delMovies(id) {
+    return fetch(`${this._baseUrl}/movies/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
-    }).then(this._checkResponse);
-  }
-
-  // Удаление лайка
-  deleteLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }).then(this._checkResponse);
-  }
-
-  // Добавление лайка
-  addLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }).then(this._checkResponse);
-  }
-
-  changeLikeCardStatus(id, isLiked) {
-    return isLiked ? this.addLike(id) : this.deleteLike(id);
-  }
-
-  // Обновление аватара
-  updateAvatar(avatar) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
-      body: JSON.stringify({
-        avatar,
-      }),
     }).then(this._checkResponse);
   }
 
@@ -151,6 +118,6 @@ class Api {
   }
 }
 
-const api = new Api('http://localhost:3001');
+const api = new Api('https://api.film.nomoredomains.xyz');
 
 export default api;

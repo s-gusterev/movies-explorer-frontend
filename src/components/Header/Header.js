@@ -4,7 +4,7 @@ import Navigation from '../Navigation/Navigation';
 import { useLocation } from 'react-router-dom';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ loggedIn }) => {
   const location = useLocation();
   return (
     <header
@@ -14,7 +14,7 @@ const Header = () => {
     >
       <div className='header__container root__container'>
         <Logo className='' />
-        <Navigation />
+        <Navigation loggedIn={loggedIn} />
       </div>
     </header>
   );

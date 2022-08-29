@@ -17,10 +17,14 @@ import api from '../../utils/MainApi';
 const App = () => {
   const history = useHistory();
   const location = useLocation();
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    name: '',
+    email: '',
+    id: '',
+  });
   const [loggedIn, setLoggedIn] = useState(false);
-
-  console.log(loggedIn);
+  const [errorApi, setErrorApi] = useState('');
+  const [messageApi, setMessageApi] = useState('');
 
   const tokenCheck = () => {
     if (localStorage.getItem('jwt')) {
@@ -33,11 +37,37 @@ const App = () => {
     tokenCheck();
   }, []);
 
+  useEffect(() => {
+    if (loggedIn) {
+      api
+        .getProfile()
+        .then((res) => {
+          setCurrentUser({
+            name: res.name,
+            email: res.email,
+            id: res.id,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
+
+  const showError = (error) => {
+    setErrorApi(error);
+    setTimeout(() => setErrorApi(''), 3000);
+  };
+
+  const showOk = (message) => {
+    setMessageApi(message);
+    setTimeout(() => setMessageApi(''), 3000);
+  };
+
   const handleLogin = ({ email, password }) => {
     return api
       .authorize(email, password)
       .then((data) => {
-        console.log(email, password);
         if (data.token) {
           localStorage.setItem('jwt', data.token);
           tokenCheck();
@@ -47,36 +77,77 @@ const App = () => {
 
       .catch((err) => {
         console.log(err);
+        if (err === 401) {
+          showError('Неправильный email или пароль');
+        } else if (err === 400) {
+          showError('Ошибка валидации - проверьте введенные данные');
+        }
       });
   };
 
   const handleRegister = ({ name, email, password }) => {
     return api
       .register(name, email, password)
-      .then((res) => {
+      .then(() => {
         handleLogin({ email, password });
-        console.log(res);
       })
-
       .catch((err) => {
+        if (err === 409) {
+          return showError(
+            'Пользователь с указанным email уже зарегистрирован'
+          );
+        }
         console.log(err);
       });
   };
 
-  console.log(currentUser);
+  const profileSubmit = ({ name, email }) => {
+    return api
+      .editProfile(name, email)
+      .then((res) => {
+        showOk('Данные успешно изменены');
+        setCurrentUser({
+          ...currentUser,
+          name: res.name,
+          email: res.email,
+        });
+      })
+      .catch((err) => {
+        if (err === 409) {
+          return showError(
+            'Пользователь с указанным email уже зарегистрирован'
+          );
+        }
+        console.log(err);
+      });
+  };
+
+  const logout = () => {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    history.push('/');
+    localStorage.removeItem('search');
+    localStorage.removeItem('shortFilms');
+    localStorage.removeItem('movies');
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <Route exact path='/'>
-          <Header />
+          <Header loggedIn={loggedIn} />
         </Route>
         <ProtectedRoute path='/movies' loggedIn={loggedIn} component={Header} />
-        <Route path='/saved-movies'>
-          <Header />
-        </Route>
-        <Route path='/profile'>
-          <Header />
-        </Route>
+        <ProtectedRoute
+          path='/saved-movies'
+          loggedIn={loggedIn}
+          component={Header}
+        />
+        <ProtectedRoute
+          path='/profile'
+          loggedIn={loggedIn}
+          component={Header}
+        />
       </Switch>
 
       <main className='main'>
@@ -94,14 +165,20 @@ const App = () => {
             loggedIn={loggedIn}
             component={SavedMovies}
           />
-          <Route path='/profile'>
-            <Profile name={currentUser.name} email={currentUser.email} />
-          </Route>
+          <ProtectedRoute
+            path='/profile'
+            logout={logout}
+            handleProfile={profileSubmit}
+            loggedIn={loggedIn}
+            component={Profile}
+            errorApi={errorApi}
+            messageApi={messageApi}
+          />
           <Route path='/signup'>
-            <Registr handleRegister={handleRegister} />
+            <Registr handleRegister={handleRegister} errorApi={errorApi} />
           </Route>
           <Route path='/signin'>
-            <Login />
+            <Login handleLogin={handleLogin} errorApi={errorApi} />
           </Route>
           <Route path='*'>
             <NotFound />
@@ -113,9 +190,11 @@ const App = () => {
           <Footer />
         </Route>
         <ProtectedRoute path='/movies' loggedIn={loggedIn} component={Footer} />
-        <Route path='/saved-movies'>
-          <Footer />
-        </Route>
+        <ProtectedRoute
+          path='/saved-movies'
+          loggedIn={loggedIn}
+          component={Footer}
+        />
       </Switch>
     </CurrentUserContext.Provider>
   );

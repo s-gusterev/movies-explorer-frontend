@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .profile__info_type_true {
   padding-bottom: 16px;
@@ -82,6 +83,25 @@
   line-height: 16px;
   letter-spacing: 0px;
   color: #ee3465;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.profile__error {
+  margin: 0;
+  color: #ee3465;
+  position: absolute;
+
+  font-size: 10px;
+}
+
+.profile__error_type_true {
+  top: 57%;
+}
+
+.profile__error_type_false {
+  top: 15px;
 }
 
 @media screen and (max-width: 768px) {

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = ({ loggedIn }) => {
   const [visibleMobileMenu, setVisibleMobileMenu] = useState(false);
   const ref = useRef();
 
@@ -31,7 +31,8 @@ const Navigation = () => {
   if (
     location.pathname === '/movies' ||
     location.pathname === '/saved-movies' ||
-    location.pathname === '/profile'
+    location.pathname === '/profile' ||
+    (location.pathname === '/' && loggedIn)
   ) {
     navigation = (
       <React.Fragment>
@@ -92,7 +93,7 @@ const Navigation = () => {
       </React.Fragment>
     );
   }
-  if (location.pathname === '/') {
+  if (location.pathname === '/' && !loggedIn) {
     navigation = (
       <nav className='navigation-auth'>
         <Link

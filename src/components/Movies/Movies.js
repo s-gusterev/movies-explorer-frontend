@@ -5,11 +5,13 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
+import api from '../../utils/MainApi';
 
 import { SEARCH_REGEX } from '../../utils/variables';
 
 const Movies = () => {
   const searchRef = useRef();
+
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
   const [visiblePreloader, setVisiblePreloader] = useState(false);
@@ -22,6 +24,20 @@ const Movies = () => {
   const [validSearch, setValidSearch] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const [savedMovies, setSavedMovies] = useState([]);
+
+  const checkLike = (movie) => {
+    if (!filteredMovies) {
+      return;
+    }
+
+    const isLiked = savedMovies.find((i) => i.movieId === movie.id);
+    if (isLiked) {
+      return true;
+    }
+    return false;
+  };
 
   const handleMoreMovies = () => {
     return setNext(() => next + counter);
@@ -41,11 +57,6 @@ const Movies = () => {
       setCounter(2);
     }
   };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [width]);
 
   const searchSubmit = (e) => {
     e.preventDefault();
@@ -116,6 +127,7 @@ const Movies = () => {
       setNotFoundError(false);
     }
     setFilteredMovies(filtered);
+
     return () => localStorage.setItem('shortFilms', shortFilms);
   }, [shortFilms]);
 
@@ -131,6 +143,14 @@ const Movies = () => {
   }, [search]);
 
   useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [width]);
+
+  useEffect(() => {
+    api.getInitialCards().then((res) => {
+      setSavedMovies(res);
+    });
     let movies = JSON.parse(localStorage.getItem('movies')) || [];
     let checked = JSON.parse(localStorage.getItem('shortFilms') || false);
     let search = localStorage.getItem('search') || '';
@@ -143,9 +163,33 @@ const Movies = () => {
     if (movies.length === 0) {
       setNotFoundError(false);
     }
-    searchRef.current.focus();
   }, []);
 
+  const addMovie = (movie) => {
+    api
+      .addMovie(movie)
+      .then((res) => {
+        const newSavedFilm = res;
+        setSavedMovies([newSavedFilm, ...savedMovies]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteMovie = (movie) => {
+    const userMovie = savedMovies.find((i) => i.movieId === movie.id);
+    const _id = userMovie._id;
+    api
+      .delMovies(_id)
+      .then((res) => {
+        const newSavedFilm = savedMovies.filter((i) => movie.id !== i.movieId);
+        setSavedMovies(newSavedFilm);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className='movies root__container'>
       {visiblePreloader && <Preloader />}
@@ -166,6 +210,9 @@ const Movies = () => {
         arr={filteredMovies}
         nextMovies={next}
         onclickButton={handleMoreMovies}
+        onSaveMovie={addMovie}
+        isLike={checkLike}
+        onDeleteMovie={deleteMovie}
       >
         {notFoundError && (
           <p className='movies__not-found'>Ничего не найдено</p>

@@ -10,6 +10,9 @@ const Input = ({
   value,
   error,
   onChange,
+  visibleError,
+  onFocus,
+  onBlur,
 }) => {
   return (
     <div className='input-container'>
@@ -24,8 +27,14 @@ const Input = ({
         name={name}
         value={value}
         onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
-      <span className='input__error'>{error}</span>
+      <span
+        className={`${visibleError ? 'input__error_hide' : 'input__error'}`}
+      >
+        {error}
+      </span>
     </div>
   );
 };
