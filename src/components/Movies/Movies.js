@@ -90,9 +90,11 @@ const Movies = () => {
             );
           });
           localStorage.setItem('movies', JSON.stringify(filtered));
+          localStorage.setItem('shortFilms', false);
         }
         if (shortFilms) {
           filtered = filtered.filter((item) => item.duration <= 40);
+          localStorage.setItem('shortFilms', true);
         }
 
         if (filtered.length === 0) {
@@ -102,7 +104,6 @@ const Movies = () => {
           setNotFoundError(false);
         }
 
-        localStorage.setItem('shortFilms', shortFilms);
         setFilteredMovies(filtered);
       })
       .catch((err) => {
@@ -113,23 +114,6 @@ const Movies = () => {
         setVisiblePreloader(false);
       });
   };
-
-  useEffect(() => {
-    let filtered = JSON.parse(localStorage.getItem('movies')) || [];
-    if (shortFilms) {
-      filtered = filtered.filter((item) => item.duration <= 40);
-    }
-
-    if (filtered.length === 0) {
-      setNotFoundError(true);
-    }
-    if (filtered.length > 0) {
-      setNotFoundError(false);
-    }
-    setFilteredMovies(filtered);
-
-    return () => localStorage.setItem('shortFilms', shortFilms);
-  }, [shortFilms]);
 
   useEffect(() => {
     setValidSearch(SEARCH_REGEX.test(search));
@@ -151,8 +135,9 @@ const Movies = () => {
     api.getInitialCards().then((res) => {
       setSavedMovies(res);
     });
+
     let movies = JSON.parse(localStorage.getItem('movies')) || [];
-    let checked = JSON.parse(localStorage.getItem('shortFilms') || false);
+    let checked = JSON.parse(localStorage.getItem('shortFilms'));
     let search = localStorage.getItem('search') || '';
     setFilteredMovies(movies);
     setShortFilms(checked);
@@ -164,6 +149,25 @@ const Movies = () => {
       setNotFoundError(false);
     }
   }, []);
+
+  useEffect(() => {
+    let filtered = JSON.parse(localStorage.getItem('movies')) || [];
+    if (shortFilms) {
+      filtered = filtered.filter((item) => item.duration <= 40);
+      localStorage.setItem('shortFilms', true);
+    }
+    if (!shortFilms) {
+      localStorage.setItem('shortFilms', false);
+    }
+
+    if (filtered.length === 0) {
+      setNotFoundError(true);
+    }
+    if (filtered.length > 0) {
+      setNotFoundError(false);
+    }
+    setFilteredMovies(filtered);
+  }, [shortFilms]);
 
   const addMovie = (movie) => {
     api

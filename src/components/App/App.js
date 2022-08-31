@@ -27,9 +27,24 @@ const App = () => {
   const [messageApi, setMessageApi] = useState('');
 
   const tokenCheck = () => {
-    if (localStorage.getItem('jwt')) {
-      setLoggedIn(true);
-      history.push(location);
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      api
+        .getProfile()
+        .then((res) => {
+          setLoggedIn(true);
+          setCurrentUser(res);
+          if (
+            location.pathname === '/signin' ||
+            location.pathname === '/signup'
+          ) {
+            return history.push('/movies');
+          }
+          history.push(location);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -45,7 +60,7 @@ const App = () => {
           setCurrentUser({
             name: res.name,
             email: res.email,
-            id: res.id,
+            id: res._id,
           });
         })
         .catch((err) => {
