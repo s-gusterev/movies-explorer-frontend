@@ -47,8 +47,6 @@ const Profile = ({ logout, handleProfile, errorApi, messageApi }) => {
     setErrorName('Введено невалидное значение');
   }, [name]);
 
-  console.log(currentUser);
-
   return (
     <section className='profile'>
       <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
