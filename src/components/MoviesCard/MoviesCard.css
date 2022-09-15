@@ -80,6 +80,11 @@
   color: #a0a0a0;
 }
 
+.movie-card__link {
+  text-decoration: none;
+  color: #000;
+}
+
 @media screen and (max-width: 786px) {
   .movie-card__image {
     height: 190px;

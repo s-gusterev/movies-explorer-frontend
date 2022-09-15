@@ -13,6 +13,10 @@
   overflow-y: clip;
 }
 
+.movies-list_type_overflow_none {
+  overflow-y: visible;
+}
+
 .movies-list_type_false {
   padding-bottom: 247px;
 }

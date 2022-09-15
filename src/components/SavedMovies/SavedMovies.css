@@ -1,3 +1,8 @@
 .movies-save {
   padding-top: 70px;
 }
+
+.movies-save__notification {
+  margin-top: 130px;
+  text-align: center;
+}

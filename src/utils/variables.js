@@ -1,16 +1,3 @@
-import img1 from '../images/movies-poster/1.jpeg';
-import img2 from '../images/movies-poster/2.jpeg';
-import img3 from '../images/movies-poster/3.jpeg';
-import img4 from '../images/movies-poster/4.jpeg';
-import img5 from '../images/movies-poster/5.jpeg';
-import img6 from '../images/movies-poster/6.jpeg';
-import img7 from '../images/movies-poster/7.jpeg';
-import img8 from '../images/movies-poster/8.jpeg';
-import img9 from '../images/movies-poster/9.jpeg';
-import img10 from '../images/movies-poster/10.png';
-import img11 from '../images/movies-poster/11.jpeg';
-import img12 from '../images/movies-poster/12.jpeg';
-
 const listTechs = [
   'HTML',
   'CSS',
@@ -36,94 +23,16 @@ const linksPortfolio = [
   },
 ];
 
-const movieList = [
-  {
-    image: img1,
-    title: '33 слова о дизайне',
-    time: '1ч 47м',
-    like: true,
-    id: 1,
-    added: true,
-  },
-  {
-    image: img2,
-    title: 'Киноальманах «100 лет дизайна»',
-    time: '1ч 3м',
-    like: false,
-    id: 2,
-  },
-  {
-    image: img3,
-    title: 'В погоне за Бенкси',
-    time: '1ч 42м',
-    like: true,
-    id: 3,
-    added: true,
-  },
-  {
-    image: img4,
-    title: 'Баския: Взрыв реальности',
-    time: '1ч 21м',
-    like: false,
-    id: 4,
-  },
-  {
-    image: img5,
-    title: 'Бег это свобода',
-    time: '1ч 44м',
-    like: false,
-    id: 5,
-  },
-  {
-    image: img6,
-    title: 'Книготорговцы',
-    time: '1ч 37м',
-    like: true,
-    id: 6,
-    added: true,
-  },
-  {
-    image: img7,
-    title: 'Когда я думаю о Германии ночью',
-    time: '1ч 56м',
-    like: false,
-    id: 7,
-  },
-  {
-    image: img8,
-    title: 'Gimme Danger: История Игги и The Stooge...',
-    time: '1ч 59м',
-    like: false,
-    id: 8,
-  },
-  {
-    image: img9,
-    title: 'Дженис: Маленькая девочка грустит',
-    time: '1ч 42м',
-    like: true,
-    id: 9,
-  },
-  {
-    image: img10,
-    title: 'Соберись перед прыжком',
-    time: '1ч 10м',
-    like: true,
-    id: 10,
-  },
-  {
-    image: img11,
-    title: 'Пи Джей Харви: A dog called money',
-    time: '1ч 4м',
-    like: false,
-    id: 11,
-  },
-  {
-    image: img12,
-    title: 'По волнам: Искусство звука в кино',
-    time: '1ч 7м',
-    like: false,
-    id: 12,
-  },
-];
+const SEARCH_REGEX = /^[а-яА-ЯёЁa-zA-Z0-9-]{2,36}$/;
+const EMAIL_REGEX = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
+const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
+const NAME_REGEX = /^[а-яА-ЯёЁa-zA-Za]{2,36}$/;
 
-export { listTechs, linksPortfolio, movieList };
+export {
+  listTechs,
+  linksPortfolio,
+  SEARCH_REGEX,
+  EMAIL_REGEX,
+  PASSWORD_REGEX,
+  NAME_REGEX,
+};

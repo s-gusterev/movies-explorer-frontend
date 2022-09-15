@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = ({ loggedIn }) => {
   const [visibleMobileMenu, setVisibleMobileMenu] = useState(false);
   const ref = useRef();
 
@@ -31,7 +31,8 @@ const Navigation = () => {
   if (
     location.pathname === '/movies' ||
     location.pathname === '/saved-movies' ||
-    location.pathname === '/profile'
+    location.pathname === '/profile' ||
+    (location.pathname === '/' && loggedIn)
   ) {
     navigation = (
       <React.Fragment>
@@ -59,17 +60,17 @@ const Navigation = () => {
         </nav>
         <nav
           ref={ref}
-          className={`navigation-mobile ${
-            visibleMobileMenu ? 'navigation-mobile_visible' : ''
-          } `}
+          className={`navigation-mobile ${visibleMobileMenu ? 'navigation-mobile_visible' : ''
+            } `}
         >
-          <Link className='navigation-mobile__link' to='/'>
+          <Link className='navigation-mobile__link' to='/' onClick={closeMenu}>
             Главная
           </Link>
           <NavLink
             className='navigation-mobile__link'
             activeClassName='navigation-mobile__link_active'
             to='/movies'
+            onClick={closeMenu}
           >
             Фильмы
           </NavLink>
@@ -77,10 +78,11 @@ const Navigation = () => {
             className='navigation-mobile__link'
             activeClassName='navigation-mobile__link_active'
             to='/saved-movies'
+            onClick={closeMenu}
           >
             Сохранённые фильмы
           </NavLink>
-          <NavLink className='navigation-mobile__account' to='/profile'>
+          <NavLink className='navigation-mobile__account' to='/profile' onClick={closeMenu}>
             Аккаунт
           </NavLink>
           <button
@@ -92,7 +94,7 @@ const Navigation = () => {
       </React.Fragment>
     );
   }
-  if (location.pathname === '/') {
+  if (location.pathname === '/' && !loggedIn) {
     navigation = (
       <nav className='navigation-auth'>
         <Link
