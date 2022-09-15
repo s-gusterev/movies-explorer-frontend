@@ -60,17 +60,17 @@ const Navigation = ({ loggedIn }) => {
         </nav>
         <nav
           ref={ref}
-          className={`navigation-mobile ${
-            visibleMobileMenu ? 'navigation-mobile_visible' : ''
-          } `}
+          className={`navigation-mobile ${visibleMobileMenu ? 'navigation-mobile_visible' : ''
+            } `}
         >
-          <Link className='navigation-mobile__link' to='/'>
+          <Link className='navigation-mobile__link' to='/' onClick={closeMenu}>
             Главная
           </Link>
           <NavLink
             className='navigation-mobile__link'
             activeClassName='navigation-mobile__link_active'
             to='/movies'
+            onClick={closeMenu}
           >
             Фильмы
           </NavLink>
@@ -78,10 +78,11 @@ const Navigation = ({ loggedIn }) => {
             className='navigation-mobile__link'
             activeClassName='navigation-mobile__link_active'
             to='/saved-movies'
+            onClick={closeMenu}
           >
             Сохранённые фильмы
           </NavLink>
-          <NavLink className='navigation-mobile__account' to='/profile'>
+          <NavLink className='navigation-mobile__account' to='/profile' onClick={closeMenu}>
             Аккаунт
           </NavLink>
           <button
