@@ -13,11 +13,11 @@ class Api {
   }
 
   // Получаем данные о пользователе
-  getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
+  getProfile(id) {
+    return fetch(`${this._baseUrl}/users/${id}`, {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._checkResponse);
   }
@@ -26,19 +26,19 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/movies`, {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._checkResponse);
   }
 
   // Редактирование профиля
-  editProfile(name, email) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'PATCH',
+  editProfile(name, email, id) {
+    return fetch(`${this._baseUrl}/users/${id}`, {
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       body: JSON.stringify({
         name,
@@ -50,10 +50,10 @@ class Api {
   // Добавление карточки
   addMovie(movie) {
     return fetch(`${this._baseUrl}/movies`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       body: JSON.stringify({
         country: movie.country,
@@ -74,21 +74,21 @@ class Api {
   // Удаление карточки
   delMovies(id) {
     return fetch(`${this._baseUrl}/movies/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
-    }).then(this._checkResponse);
+    });
   }
 
   //Регистрация
   register(name, email, password) {
-    return fetch(`${this._baseUrl}/signup`, {
-      method: 'POST',
+    return fetch(`${this._baseUrl}/register`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
 
       body: JSON.stringify({ name, email, password }),
@@ -96,28 +96,28 @@ class Api {
   }
 
   authorize(email, password) {
-    return fetch(`${this._baseUrl}/signin`, {
-      method: 'POST',
+    return fetch(`${this._baseUrl}/auth`, {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     }).then(this._checkResponse);
   }
 
   getContent(token) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'GET',
+    return fetch(`${this._baseUrl}/users`, {
+      method: "GET",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     }).then(this._checkResponse);
   }
 }
 
-const api = new Api('https://api.film.nomoredomains.xyz');
+const api = new Api("https://55cb63e539efc9ea.mokky.dev");
 
 export default api;

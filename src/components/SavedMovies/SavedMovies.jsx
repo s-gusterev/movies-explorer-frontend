@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import './SavedMovies.css';
-import MoviesCard from '../MoviesCard/MoviesCard';
-import SearchForm from '../SearchForm/SearchForm';
-import api from '../../utils/MainApi';
-import { SEARCH_REGEX } from '../../utils/variables';
+import React, { useEffect, useState } from "react";
+import "./SavedMovies.css";
+import MoviesCard from "../MoviesCard/MoviesCard";
+import SearchForm from "../SearchForm/SearchForm";
+import api from "../../utils/MainApi";
+import { SEARCH_REGEX } from "../../utils/variables";
 
 const SavedMovies = () => {
   const [savedMovies, setSavedMovies] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [shortFilms, setShortFilms] = useState(false);
   const [validSearch, setValidSearch] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [notFoundError, setNotFoundError] = useState(false);
 
   const searchSubmit = (e) => {
     e.preventDefault();
     const searchValue = SEARCH_REGEX.test(search);
     if (!searchValue) {
-      setErrorMessage('Ошибка - введите ключевое слово');
+      setErrorMessage("Ошибка - введите ключевое слово");
       return;
     }
 
@@ -53,7 +53,7 @@ const SavedMovies = () => {
         }
         setFilteredMovies(res);
       })
-      .catch((err) => console.log('ошибка'));
+      .catch((err) => console.log("ошибка"));
   };
 
   useEffect(() => {
@@ -77,11 +77,11 @@ const SavedMovies = () => {
     setValidSearch(SEARCH_REGEX.test(search));
     if (!validSearch) {
       setErrorMessage(
-        'Введите ключевое слово - страну, год, название, режиссер'
+        "Введите ключевое слово - страну, год, название, режиссер"
       );
       return;
     }
-    setErrorMessage('Введено невалидное значение');
+    setErrorMessage("Введено невалидное значение");
   }, [search]);
 
   useEffect(() => {
@@ -92,16 +92,16 @@ const SavedMovies = () => {
 
   const deleteMovie = (movie) => {
     api
-      .delMovies(movie._id)
+      .delMovies(movie.id)
       .then(() => {
-        setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
+        setSavedMovies((state) => state.filter((c) => c.id !== movie.id));
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <div className='movies-save root__container'>
+    <div className="movies-save root__container">
       <SearchForm
         onSubmit={searchSubmit}
         checked={shortFilms}
@@ -114,21 +114,21 @@ const SavedMovies = () => {
         errorMessage={errorMessage}
       />
       {savedMovies.length === 0 && (
-        <p className='movies-save__notification'>
+        <p className="movies-save__notification">
           У вас нет сохраненных фильмов
         </p>
       )}
       {notFoundError && (
-        <p className='movies-save__notification'>
+        <p className="movies-save__notification">
           По данному запросу нет результатов
         </p>
       )}
-      <ul className='movies-list movies-list_type_false'>
+      <ul className="movies-list movies-list_type_false">
         {filteredMovies.length === 0 &&
           !notFoundError &&
           savedMovies.map((card) => (
             <MoviesCard
-              key={card._id}
+              key={card.id}
               link={card.image}
               title={card.nameRU}
               time={card.duration}
