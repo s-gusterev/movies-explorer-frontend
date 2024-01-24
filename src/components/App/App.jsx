@@ -36,10 +36,10 @@ const App = () => {
           setLoggedIn(true);
           setCurrentUser(res);
           if (
-            location.pathname === "/signin" ||
-            location.pathname === "/signup"
+            location.pathname === "/movies-explorer-frontend/signin" ||
+            location.pathname === "/movies-explorer-frontend/signup"
           ) {
-            return history.push("/movies");
+            return history.push("/movies-explorer-frontend/movies");
           }
           history.push(location);
         })
@@ -89,7 +89,7 @@ const App = () => {
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user_id", data.data.id);
           tokenCheck();
-          history.push("/movies");
+          history.push("/movies-explorer-frontend/movies");
         }
       })
 
@@ -144,7 +144,7 @@ const App = () => {
   const logout = () => {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
-    history.push("/");
+    history.push("/movies-explorer-frontend/");
     localStorage.removeItem("search");
     localStorage.removeItem("shortFilms");
     localStorage.removeItem("movies");
@@ -153,17 +153,21 @@ const App = () => {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/movies-explorer-frontend/">
           <Header loggedIn={loggedIn} />
         </Route>
-        <ProtectedRoute path="/movies" loggedIn={loggedIn} component={Header} />
         <ProtectedRoute
-          path="/saved-movies"
+          path="/movies-explorer-frontend/movies"
           loggedIn={loggedIn}
           component={Header}
         />
         <ProtectedRoute
-          path="/profile"
+          path="/movies-explorer-frontend/saved-movies"
+          loggedIn={loggedIn}
+          component={Header}
+        />
+        <ProtectedRoute
+          path="/movies-explorer-frontend/profile"
           loggedIn={loggedIn}
           component={Header}
         />
@@ -171,21 +175,21 @@ const App = () => {
 
       <main className="main">
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/movies-explorer-frontend">
             <Main />
           </Route>
           <ProtectedRoute
-            path="/movies"
+            path="/movies-explorer-frontend/movies"
             loggedIn={loggedIn}
             component={Movies}
           />
           <ProtectedRoute
-            path="/saved-movies"
+            path="/movies-explorer-frontend/saved-movies"
             loggedIn={loggedIn}
             component={SavedMovies}
           />
           <ProtectedRoute
-            path="/profile"
+            path="/movies-explorer-frontend/profile"
             logout={logout}
             handleProfile={profileSubmit}
             loggedIn={loggedIn}
@@ -193,10 +197,10 @@ const App = () => {
             errorApi={errorApi}
             messageApi={messageApi}
           />
-          <Route path="/signup">
+          <Route path="/movies-explorer-frontend/signup">
             <Registr handleRegister={handleRegister} errorApi={errorApi} />
           </Route>
-          <Route path="/signin">
+          <Route path="/movies-explorer-frontend/signin">
             <Login handleLogin={handleLogin} errorApi={errorApi} />
           </Route>
           <Route path="*">
@@ -205,12 +209,16 @@ const App = () => {
         </Switch>
       </main>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/movies-explorer-frontend/">
           <Footer />
         </Route>
-        <ProtectedRoute path="/movies" loggedIn={loggedIn} component={Footer} />
         <ProtectedRoute
-          path="/saved-movies"
+          path="/movies-explorer-frontend/movies"
+          loggedIn={loggedIn}
+          component={Footer}
+        />
+        <ProtectedRoute
+          path="/movies-explorer-frontend/saved-movies"
           loggedIn={loggedIn}
           component={Footer}
         />

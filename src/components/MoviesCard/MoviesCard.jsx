@@ -1,6 +1,6 @@
-import React from 'react';
-import './MoviesCard.css';
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import "./MoviesCard.css";
+import { useLocation } from "react-router-dom";
 
 const MoviesCard = ({
   link,
@@ -28,21 +28,21 @@ const MoviesCard = ({
     let hours = Math.trunc(mins / 60);
     let minutes = mins % 60;
     if (hours === 0) {
-      return minutes + 'м';
+      return minutes + "м";
     } else if (minutes === 0) {
-      return hours + 'ч';
+      return hours + "ч";
     } else {
-      return hours + 'ч ' + minutes + 'м';
+      return hours + "ч " + minutes + "м";
     }
   };
 
   return (
-    <li className='movie-card'>
-      <a href={trailerLink} className='movie-card__link' target='_blank'>
+    <li className="movie-card">
+      <a href={trailerLink} className="movie-card__link" target="_blank">
         <img
-          className='movie-card__image'
+          className="movie-card__image"
           src={
-            location.pathname === '/movies'
+            location.pathname === "/movies-explorer-frontend/movies"
               ? `https://api.nomoreparties.co/${link}`
               : link
           }
@@ -50,24 +50,24 @@ const MoviesCard = ({
         />
       </a>
 
-      <div className='movie-card__description'>
-        <h2 className='movie-card__title'>{title}</h2>
-        {location.pathname === '/movies' ? (
+      <div className="movie-card__description">
+        <h2 className="movie-card__title">{title}</h2>
+        {location.pathname === "/movies-explorer-frontend/movies" ? (
           <button
             onClick={!isLiked ? handleClickSaveMovie : handleClickDeleteMovie}
             className={`movie-card__like ${
-              isLiked ? 'movie-card__like_active' : ''
+              isLiked ? "movie-card__like_active" : ""
             }`}
-            type='button'
+            type="button"
           ></button>
         ) : (
           <button
             onClick={handleClickDeleteMovie}
-            className='movie-card__delete'
-            type='button'
+            className="movie-card__delete"
+            type="button"
           ></button>
         )}
-        <p className='movie-card__time'>{getTimeFromMins(time)}</p>
+        <p className="movie-card__time">{getTimeFromMins(time)}</p>
       </div>
     </li>
   );
